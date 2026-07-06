@@ -2,6 +2,7 @@
 import { watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useTracking } from '../composables/useTracking'
+import { REVIEWABLE_STATUSES } from '../constants/tracking'
 import TrackingSearchForm from '../components/tracking/TrackingSearchForm.vue'
 import DeliveryHeaderBanner from '../components/tracking/DeliveryHeaderBanner.vue'
 import DeliveryStatusCard from '../components/tracking/DeliveryStatusCard.vue'
@@ -42,7 +43,7 @@ watch(
 
             <template v-if="delivery && !loading && !error">
               <DriverRatingCard
-                v-if="delivery.courier && delivery.status === 'delivered'"
+                v-if="delivery.courier && REVIEWABLE_STATUSES.includes(delivery.status)"
                 :courier="delivery.courier"
                 :code="delivery.code"
                 :existing-review="delivery.existingReview"
@@ -52,6 +53,7 @@ watch(
                 :timeline="delivery.timeline"
                 :proof-of-delivery="delivery.proofOfDelivery"
                 :code="delivery.code"
+                :time-zone="delivery.timeZone"
               />
             </template>
           </div>

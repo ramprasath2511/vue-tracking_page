@@ -45,3 +45,9 @@ export const STATUS_META = {
     description: "We don't have an update on your delivery status right now.",
   },
 }
+
+// Statuses at which a customer can rate their driver, per manager sign-off.
+// 'completed' is actually an Order-level status in core-api rather than a
+// Delivery one, so it likely never appears here — included anyway in case
+// that assumption is wrong.
+export const REVIEWABLE_STATUSES = ['delivered', 'delivery-partially-successful', 'completed']

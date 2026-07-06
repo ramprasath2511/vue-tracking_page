@@ -23,11 +23,11 @@ const isDelivered = computed(() => props.delivery.status === 'delivered')
         <div v-if="isDelivered && delivery.deliveredAt" class="d-flex">
           <div class="pe-5">
             <h6 class="mb-1">Delivered on:</h6>
-            <p class="mb-0">{{ formatDate(delivery.deliveredAt) }}</p>
+            <p class="mb-0">{{ formatDate(delivery.deliveredAt, delivery.timeZone) }}</p>
           </div>
           <div>
             <h6 class="mb-1">Delivered at:</h6>
-            <p class="mb-0">{{ formatTime(delivery.deliveredAt) }}</p>
+            <p class="mb-0">{{ formatTime(delivery.deliveredAt, delivery.timeZone) }}</p>
           </div>
         </div>
       </div>

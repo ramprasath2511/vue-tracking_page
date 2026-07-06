@@ -15,6 +15,10 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  timeZone: {
+    type: String,
+    default: undefined,
+  },
 })
 
 const photoFailed = ref(false)
@@ -49,6 +53,7 @@ function staticMapUrl(location) {
         :step="step"
         :is-open="openKey === step.key"
         :is-last="index === timeline.length - 1"
+        :time-zone="timeZone"
         @toggle="toggle(step.key)"
       >
         <div v-if="step.key === 'delivered' && step.completed && proofOfDelivery" class="d-flex flex-wrap mt-4 gap-4">

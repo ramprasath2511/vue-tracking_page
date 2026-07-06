@@ -21,6 +21,7 @@ export function mapDeliveryResponse(response) {
   return {
     code: delivery.tracking_code,
     status: delivery.status,
+    timeZone: delivery.time_zone ?? null,
     sender: {
       name: delivery.sender_details?.company_name ?? null,
       logoUrl: delivery.sender_details?.logo_url ?? null,

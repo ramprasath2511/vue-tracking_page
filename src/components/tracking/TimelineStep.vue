@@ -14,6 +14,10 @@ defineProps({
     type: Boolean,
     default: false,
   },
+  timeZone: {
+    type: String,
+    default: undefined,
+  },
 })
 
 defineEmits(['toggle'])
@@ -47,7 +51,7 @@ defineEmits(['toggle'])
         </div>
         <div class="pt-2">
           <p class="mb-2">
-            <strong v-if="step.timestamp">{{ formatDateTime(step.timestamp) }} &mdash; </strong>{{ step.description }}
+            <strong v-if="step.timestamp">{{ formatDateTime(step.timestamp, timeZone) }} &mdash; </strong>{{ step.description }}
           </p>
           <slot />
         </div>
