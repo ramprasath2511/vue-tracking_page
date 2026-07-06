@@ -1,0 +1,31 @@
+/* Raw brand palette, extracted from the live zippd.com theme. */
+:root {
+  --black: #000000;
+  --black-blue: #051042;
+  --zippd-blue: #173ded;
+  --barely-blue: #abe1fa;
+  --cloud-grey: #f2f3f5;
+  --white-van: #ffffff;
+  --red-light: #ff4d4d;
+
+  --font-family-base: Poppins, sans-serif;
+  --font-family-alt: Roboto, sans-serif;
+
+  --radius-pill: 999px;
+  --shadow-card: 0 5px 20px rgba(5, 16, 66, 0.06);
+}
+
+/*
+ * Colour plate — one accent colour used everywhere (buttons, checkmarks,
+ * star ratings, focus rings, links). Nothing else should introduce its own
+ * one-off status colour (green/amber/etc). --color-danger is the one
+ * deliberate exception, reserved strictly for real error states.
+ */
+:root {
+  --color-accent: var(--zippd-blue);
+  --color-accent-subtle: var(--barely-blue);
+  --color-ink: var(--black-blue);
+  --color-surface: var(--white-van);
+  --color-surface-muted: var(--cloud-grey);
+  --color-danger: var(--red-light);
+}
