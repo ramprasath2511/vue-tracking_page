@@ -1,0 +1,12 @@
+services:
+  web:
+    build:
+      context: .
+      target: dev
+    ports:
+      - '5173:5173'
+    volumes:
+      - .:/app
+    environment:
+      VITE_CORE_API_URL: ${VITE_CORE_API_URL:-}
+      VITE_GOOGLE_MAPS_API_KEY: ${VITE_GOOGLE_MAPS_API_KEY:-}

@@ -1,0 +1,64 @@
+body {
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.25;
+  color: var(--black-blue);
+  background-color: var(--white-van);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+}
+
+.bg-black-blue {
+  background-color: var(--black-blue);
+  color: var(--white-van);
+}
+
+.bg-cloud-grey {
+  background-color: var(--cloud-grey);
+  color: var(--black-blue);
+}
+
+.bg-white-van {
+  background-color: var(--white-van);
+  color: var(--black-blue);
+}
+
+.section-heading {
+  font-weight: 500;
+}
+
+.intro-text {
+  font-size: 22px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.button-pill {
+  display: inline-block;
+  padding: 0.938rem 1.875rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.466;
+  border-radius: var(--radius-pill);
+  border: 0.125rem solid transparent;
+  text-align: center;
+  background: var(--zippd-blue);
+  color: var(--white-van);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.button-pill:hover,
+.button-pill:focus {
+  filter: brightness(1.13);
+  color: var(--white-van);
+}
