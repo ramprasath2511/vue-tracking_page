@@ -42,7 +42,7 @@ watch(
 
             <template v-if="delivery && !loading && !error">
               <DriverRatingCard
-                v-if="delivery.courier"
+                v-if="delivery.courier && delivery.status === 'delivered'"
                 :courier="delivery.courier"
                 :code="delivery.code"
                 :existing-review="delivery.existingReview"
