@@ -51,3 +51,21 @@ export const STATUS_META = {
 // Delivery one, so it likely never appears here — included anyway in case
 // that assumption is wrong.
 export const REVIEWABLE_STATUSES = ['delivered', 'delivery-partially-successful', 'completed']
+
+// How often to re-fetch delivery status while the tracking page is open.
+export const STATUS_POLL_INTERVAL_MS = 20000
+
+// Statuses at which a driver is actively en route — only while in one of
+// these do we attempt to show a live driver-location map.
+export const LIVE_TRACKING_STATUSES = [
+  'driver-on-the-way-to-pickup',
+  'driver-arrived-at-first-pickup',
+  'out-for-delivery',
+]
+
+// Once a delivery reaches one of these, it's done — stop polling for status.
+export const TERMINAL_STATUSES = [
+  'delivered',
+  'delivery-unsuccessful',
+  'delivery-partially-successful',
+]

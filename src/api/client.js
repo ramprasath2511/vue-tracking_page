@@ -11,3 +11,18 @@ export const coreApi = axios.create({
     Accept: 'application/json',
   },
 })
+
+// driver-location-service — only used to mint a short-lived live-tracking
+// auth token (see src/api/driverLocation.js); the WebSocket itself is a
+// plain connection derived from this same base URL.
+const locationServiceBaseURL =
+  window.__APP_CONFIG__?.DRIVER_LOCATION_SERVICE_URL ||
+  import.meta.env.VITE_DRIVER_LOCATION_SERVICE_URL ||
+  ''
+
+export const locationServiceApi = axios.create({
+  baseURL: locationServiceBaseURL,
+  headers: {
+    Accept: 'application/json',
+  },
+})
