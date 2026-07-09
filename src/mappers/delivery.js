@@ -39,7 +39,15 @@ export function mapDeliveryResponse(response) {
     courier: mapCourier(delivery.driver),
     timeline: mapTimeline(milestones),
     existingReview: mapReview(delivery.review),
+    fulfilmentType: delivery.fulfilment_type ?? null, // 'fleetable' | 'in_house'
+    fleetableLocation: mapFleetableLocation(delivery.fleetable),
   }
+}
+
+function mapFleetableLocation(fleetable) {
+  if (!fleetable || fleetable.latitude === null || fleetable.longitude === null) return null
+
+  return { lat: fleetable.latitude, lng: fleetable.longitude }
 }
 
 function mapReview(review) {
