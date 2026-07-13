@@ -9,8 +9,8 @@ public tracking endpoint.
 
 ## Pages
 
-- `/tracking` — enter a tracking code
-- `/tracking?code=XXXX` — status, delivery address, driver rating/review, proof-of-delivery
+- `/` — enter a tracking code
+- `/?code=XXXX` — status, delivery address, driver rating/review, proof-of-delivery
   photo + GPS map, and a milestone timeline (adapts to whichever fulfilment path the
   delivery actually took)
 

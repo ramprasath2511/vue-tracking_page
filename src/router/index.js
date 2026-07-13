@@ -5,8 +5,7 @@ import NotFoundPage from '../pages/NotFoundPage.vue'
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/', redirect: '/tracking' },
-    { path: '/tracking', name: 'tracking', component: TrackingPage },
+    { path: '/', name: 'tracking', component: TrackingPage },
     { path: '/:pathMatch(.*)*', name: 'not-found', component: NotFoundPage },
   ],
 })

@@ -11,7 +11,7 @@ function onSubmit() {
   if (!code.value.trim()) {
     return
   }
-  router.push({ path: '/tracking', query: { code: code.value.trim().toUpperCase() } })
+  router.push({ path: '/', query: { code: code.value.trim().toUpperCase() } })
 }
 </script>
 
