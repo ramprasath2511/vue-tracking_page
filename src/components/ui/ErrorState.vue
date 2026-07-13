@@ -11,7 +11,7 @@ defineProps({
   <div class="error-state bg-white-van p-4 p-md-5 text-center">
     <i class="fas fa-triangle-exclamation error-icon mb-3"></i>
     <p class="mb-4">{{ message }}</p>
-    <router-link to="/tracking" class="button-pill">Try another code</router-link>
+    <router-link to="/" class="button-pill">Try another code</router-link>
   </div>
 </template>
 
