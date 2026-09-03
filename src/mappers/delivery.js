@@ -22,12 +22,18 @@ export function mapDeliveryResponse(response) {
     code: delivery.tracking_code,
     status: delivery.status,
     timeZone: delivery.time_zone ?? null,
+    fulfilmentDate: delivery.fulfilment_date ?? null,
+    attemptedAt: delivery.attempted_at ?? null,
     sender: {
       name: delivery.sender_details?.company_name ?? null,
       logoUrl: delivery.sender_details?.logo_url ?? null,
     },
+    recipient: mapRecipient(delivery.recipient_details),
+    instruction: delivery.instruction ?? null,
+    instructionDetails: delivery.instruction_details ?? null,
     deliveredAt: deliveredMilestone?.datetime ?? null,
     address: mapAddress(delivery.recipient_address),
+    driverEta: mapDriverEta(milestones['out-for-delivery']),
     proofOfDelivery: pod
       ? {
           photoUrl: pod.photo ?? null,
@@ -41,6 +47,26 @@ export function mapDeliveryResponse(response) {
     existingReview: mapReview(delivery.review),
     fulfilmentType: delivery.fulfilment_type ?? null, // 'fleetable' | 'in_house'
     fleetableLocation: mapFleetableLocation(delivery.fleetable),
+  }
+}
+
+function mapRecipient(details) {
+  if (!details) return null
+
+  return {
+    contactName: details.contact_name ?? null,
+    phoneNumber: details.phone_number ?? null,
+    email: details.email ?? null,
+    companyName: details.company_name ?? null,
+  }
+}
+
+function mapDriverEta(outForDeliveryMilestone) {
+  if (!outForDeliveryMilestone?.driver_expected_from) return null
+
+  return {
+    from: outForDeliveryMilestone.driver_expected_from,
+    to: outForDeliveryMilestone.driver_expected_to ?? null,
   }
 }
 

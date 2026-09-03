@@ -7,8 +7,10 @@ import { LIVE_TRACKING_STATUSES, REVIEWABLE_STATUSES } from '../constants/tracki
 import TrackingSearchForm from '../components/tracking/TrackingSearchForm.vue'
 import DeliveryHeaderBanner from '../components/tracking/DeliveryHeaderBanner.vue'
 import DeliveryStatusCard from '../components/tracking/DeliveryStatusCard.vue'
+import DeliveryDetailsCard from '../components/tracking/DeliveryDetailsCard.vue'
 import DriverTrackingMap from '../components/tracking/DriverTrackingMap.vue'
 import DriverRatingCard from '../components/tracking/DriverRatingCard.vue'
+import ProofOfDeliveryCard from '../components/tracking/ProofOfDeliveryCard.vue'
 import DeliveryTimeline from '../components/tracking/DeliveryTimeline.vue'
 import LoadingSpinner from '../components/ui/LoadingSpinner.vue'
 import ErrorState from '../components/ui/ErrorState.vue'
@@ -77,13 +79,22 @@ onUnmounted(() => {
                 v-if="LIVE_TRACKING_STATUSES.includes(delivery.status)"
                 :driver-position="driverLocation.driverPosition.value"
                 :tracking-status="driverLocation.trackingStatus.value"
+                class="mb-4"
               />
+              <DeliveryDetailsCard :delivery="delivery" class="mb-4" />
               <DriverRatingCard
                 v-if="delivery.courier && REVIEWABLE_STATUSES.includes(delivery.status)"
                 :courier="delivery.courier"
                 :code="delivery.code"
                 :existing-review="delivery.existingReview"
-                class="mb-5"
+                class="mb-4"
+              />
+              <ProofOfDeliveryCard
+                v-if="delivery.status === 'delivered' && delivery.proofOfDelivery"
+                :proof-of-delivery="delivery.proofOfDelivery"
+                :delivered-at="delivery.deliveredAt"
+                :time-zone="delivery.timeZone"
+                class="mb-4"
               />
               <DeliveryTimeline
                 :timeline="delivery.timeline"

@@ -81,7 +81,7 @@ const displayedReview = () => props.existingReview ?? justSubmitted.value
                 <p class="mb-0">Deliveries</p>
               </div>
               <div>
-                <h4 class="mb-0">{{ courier.rating.toFixed(1) }} <i class="fas fa-star star-icon"></i></h4>
+                <h4 class="mb-0">{{ courier.rating ? courier.rating.toFixed(1) : 'N/A' }} <i class="fas fa-star star-icon"></i></h4>
                 <p class="mb-0">Rating</p>
               </div>
             </div>
