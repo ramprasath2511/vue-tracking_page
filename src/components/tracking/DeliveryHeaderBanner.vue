@@ -1,5 +1,6 @@
 <script setup>
 import { hideBrokenImage } from '../../utils/dom'
+import DeliveryScene from './DeliveryScene.vue'
 
 defineProps({
   delivery: {
@@ -11,6 +12,7 @@ defineProps({
 
 <template>
   <section class="banner bg-black-blue pt-5 text-center">
+    <DeliveryScene compact class="banner-scene" />
     <div class="container">
       <img
         v-if="delivery.sender?.logoUrl"
@@ -38,8 +40,14 @@ defineProps({
 
 <style scoped>
 .banner {
+  position: relative;
+  overflow: hidden;
   padding-bottom: 5rem;
 }
+
+.banner-scene { position: absolute; right: max(1rem, calc((100vw - 72rem) / 2)); top: .5rem; opacity: .72; pointer-events: none; }
+.banner .container { position: relative; z-index: 1; }
+@media (max-width: 767px) { .banner-scene { right: -3rem; top: 3rem; opacity: .3; } }
 
 @media (min-width: 768px) {
   .banner {

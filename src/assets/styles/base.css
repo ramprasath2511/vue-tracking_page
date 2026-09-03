@@ -62,3 +62,8 @@ h6 {
   filter: brightness(1.13);
   color: var(--white-van);
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  .button-pill { transition: transform .25s ease, box-shadow .25s ease, filter .25s ease; }
+  .button-pill:hover, .button-pill:focus { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(23, 61, 237, .28); }
+}
