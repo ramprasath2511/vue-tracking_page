@@ -6,7 +6,6 @@ import { useDriverLocation } from '../composables/useDriverLocation'
 import { LIVE_TRACKING_STATUSES, REVIEWABLE_STATUSES } from '../constants/tracking'
 import TrackingSearchForm from '../components/tracking/TrackingSearchForm.vue'
 import DeliveryHeaderBanner from '../components/tracking/DeliveryHeaderBanner.vue'
-import DeliveryStatusCard from '../components/tracking/DeliveryStatusCard.vue'
 import DeliveryDetailsCard from '../components/tracking/DeliveryDetailsCard.vue'
 import DriverTrackingMap from '../components/tracking/DriverTrackingMap.vue'
 import DriverRatingCard from '../components/tracking/DriverRatingCard.vue'
@@ -68,39 +67,35 @@ onUnmounted(() => {
       <div class="container">
         <div class="row">
           <div class="col-12 col-md-10 offset-md-1">
-            <div class="overlap-card mb-5">
+            <div class="result-content mb-4">
               <LoadingSpinner v-if="loading" />
               <ErrorState v-else-if="error" :message="error" />
-              <DeliveryStatusCard v-else-if="delivery" :delivery="delivery" />
             </div>
 
             <template v-if="delivery && !loading && !error">
+              <div class="tracking-grid">
+                <div class="tracking-column">
+                  <section class="content-card">
+                    <div class="content-card-heading"><span><i class="fas fa-truck"></i></span><h2>Tracking progress</h2></div>
+                    <DeliveryTimeline :timeline="delivery.timeline" :proof-of-delivery="delivery.proofOfDelivery" :code="delivery.code" :time-zone="delivery.timeZone" />
+                  </section>
+                  <ProofOfDeliveryCard
+                    v-if="delivery.status === 'delivered' && delivery.proofOfDelivery"
+                    :proof-of-delivery="delivery.proofOfDelivery"
+                    :delivered-at="delivery.deliveredAt"
+                    :time-zone="delivery.timeZone"
+                  />
+                </div>
+                <aside class="tracking-column tracking-column--side">
+                  <section class="content-card"><div class="content-card-heading"><span><i class="fas fa-file-lines"></i></span><h2>Order details</h2></div><DeliveryDetailsCard :delivery="delivery" /></section>
+                  <section v-if="delivery.courier && REVIEWABLE_STATUSES.includes(delivery.status)" class="content-card"><div class="content-card-heading"><span><i class="fas fa-user"></i></span><h2>Courier</h2></div><DriverRatingCard :courier="delivery.courier" :code="delivery.code" :existing-review="delivery.existingReview" /></section>
+                </aside>
+              </div>
               <DriverTrackingMap
                 v-if="LIVE_TRACKING_STATUSES.includes(delivery.status)"
                 :driver-position="driverLocation.driverPosition.value"
                 :tracking-status="driverLocation.trackingStatus.value"
-                class="mb-4"
-              />
-              <DeliveryDetailsCard :delivery="delivery" class="mb-4" />
-              <DriverRatingCard
-                v-if="delivery.courier && REVIEWABLE_STATUSES.includes(delivery.status)"
-                :courier="delivery.courier"
-                :code="delivery.code"
-                :existing-review="delivery.existingReview"
-                class="mb-4"
-              />
-              <ProofOfDeliveryCard
-                v-if="delivery.status === 'delivered' && delivery.proofOfDelivery"
-                :proof-of-delivery="delivery.proofOfDelivery"
-                :delivered-at="delivery.deliveredAt"
-                :time-zone="delivery.timeZone"
-                class="mb-4"
-              />
-              <DeliveryTimeline
-                :timeline="delivery.timeline"
-                :proof-of-delivery="delivery.proofOfDelivery"
-                :code="delivery.code"
-                :time-zone="delivery.timeZone"
+                class="map-section"
               />
             </template>
           </div>
@@ -120,15 +115,13 @@ section.bg-cloud-grey > .container {
   width: 100%;
 }
 
-.overlap-card {
-  position: relative;
-  z-index: 2;
-  margin-top: -3rem;
-}
+.result-content:empty { display: none; }
 
-@media (min-width: 768px) {
-  .overlap-card {
-    margin-top: -4rem;
-  }
-}
+.tracking-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(19rem, .62fr); gap: 1.5rem; }
+.tracking-column { display: grid; align-content: start; gap: 1.5rem; }
+.content-card { padding: 1.5rem; background: var(--white-van); border: 1px solid rgba(5, 16, 66, .08); border-radius: 1rem; box-shadow: var(--shadow-card); }
+.content-card-heading { display: flex; align-items: center; gap: .75rem; margin-bottom: 1.25rem; }.content-card-heading span { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: .7rem; background: var(--color-accent-subtle); color: var(--color-accent); }.content-card-heading h2 { margin: 0; color: var(--color-ink); font-size: 1.05rem; font-weight: 600; }
+.content-card :deep(.timeline-card), .content-card :deep(.details-card), .content-card :deep(.driver-rating-card) { padding: 0; border-radius: 0; box-shadow: none; background: transparent; }.content-card :deep(.timeline-card h5) { display: none; }.content-card :deep(.details-card h5) { display: none; }.content-card :deep(.driver-rating-card) { margin: 0; }
+.map-section { margin-top: 1.5rem; }
+@media (max-width: 900px) { .tracking-grid { grid-template-columns: 1fr; } }
 </style>

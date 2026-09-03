@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import ZippdGlassMark from './ZippdGlassMark.vue'
 
 const router = useRouter()
 const code = ref('')
@@ -21,16 +20,12 @@ function onSubmit() {
     <div class="hero-overlay"></div>
     <div class="container hero-content">
       <div class="row align-items-center g-5">
-        <div class="col-12 col-lg-5 hero-copy">
+        <div class="col-12 col-lg-6 hero-copy">
           <p class="hero-eyebrow"><span></span> DELIVERY INTELLIGENCE</p>
           <h1>Every delivery,<br /><em>beautifully clear.</em></h1>
           <p class="hero-intro">From dispatch to doorstep, know exactly where your order is — in real time.</p>
-          <ZippdGlassMark class="d-lg-none" />
         </div>
-        <div class="col-lg-3 d-none d-lg-flex align-items-center">
-          <ZippdGlassMark class="hero-scene" />
-        </div>
-        <div class="col-12 col-lg-4">
+        <div class="col-12 col-lg-6">
           <div class="hero-card p-4 p-md-5">
             <h3 class="mb-3">Track</h3>
             <p class="mb-4">Enter your tracking code to see updates and live tracking for your delivery.</p>
@@ -92,7 +87,6 @@ function onSubmit() {
 .hero-eyebrow { display: flex; align-items: center; gap: .65rem; color: var(--barely-blue); font-size: .72rem; font-weight: 700; letter-spacing: .16em; }
 .hero-eyebrow span { width: 2.25rem; height: 1px; background: currentColor; }
 .hero-intro { max-width: 31rem; margin: 1.5rem 0 0; color: rgba(255,255,255,.75); font-size: 1.1rem; line-height: 1.65; }
-.hero-scene { --scene-size: min(18rem, 25vw); width: 100%; }
 
 .hero-card {
   position: relative;
